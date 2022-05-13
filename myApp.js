@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 let express = require('express');
 let app = express();
 
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // serving a json data
 app.get('/json', (req, res) => {
